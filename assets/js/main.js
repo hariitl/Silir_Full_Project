@@ -403,31 +403,9 @@ async function updateOther() {
 // Update "Other" data every 2 seconds
 setInterval(updateOther, 2000);
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Select all menu links
-  const menuLinks = document.querySelectorAll("#MyDevices-nav .nav-link");
 
-  // Highlight the active menu item based on the current page URL
-  menuLinks.forEach(link => {
-    if (link.href === window.location.href) {
-      link.classList.add("active");
-      link.closest(".collapse").classList.add("show"); // Expand parent menu
-      const parentNav = link.closest(".nav-item");
-      if (parentNav) {
-        parentNav.querySelector(".nav-link").classList.add("active");
-      }
-    }
-  });
 
-  // Add click event listener to manage active state
-  menuLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      // Remove active class from all links
-      menuLinks.forEach(item => item.classList.remove("active"));
-      link.classList.add("active"); // Add active class to the clicked link
-    });
-  });
-});
+
 
 
 

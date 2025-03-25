@@ -86,12 +86,12 @@
           </li>
           <!-- End Search Icon-->
 
-          <li class="nav-item dropdown">
+          <!--<li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
               <i class="bi bi-bell"></i>
-              <span class="badge bg-primary badge-number">4</span> </a
-            ><!-- End Notification Icon -->
-
+              <span class="badge bg-primary badge-number">4</span> </a> -->
+              <!-- End Notification Icon --> 
+<!--
             <ul
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications"
             >
@@ -161,17 +161,17 @@
               <li class="dropdown-footer">
                 <a href="#">Show all notifications</a>
               </li>
-            </ul>
+            </ul>-->
             <!-- End Notification Dropdown Items -->
           </li>
           <!-- End Notification Nav -->
-
+<!--
           <li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
               <i class="bi bi-chat-left-text"></i>
               <span class="badge bg-success badge-number">3</span> </a
-            ><!-- End Messages Icon -->
-
+            >--><!-- End Messages Icon -->
+<!--
             <ul
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages"
             >
@@ -253,9 +253,9 @@
               <li class="dropdown-footer">
                 <a href="#">Show all messages</a>
               </li>
-            </ul>
+            </ul>-->
             <!-- End Messages Dropdown Items -->
-          </li>
+          </li> 
           <!-- End Messages Nav -->
 
           <li class="nav-item dropdown pe-3">
@@ -265,12 +265,12 @@
               data-bs-toggle="dropdown"
             >
               <img
-                src="assets/img/profile-img.jpg"
+                src="{{ banana_user_profile['profile_image'] }}"
                 alt="Profile"
                 class="rounded-circle"
               />
               <span class="d-none d-md-block dropdown-toggle ps-2"
-                >{{session["username"]}}</span
+                >{{ banana_user_profile['fullname'] }}</span
               > </a
             ><!-- End Profile Iamge Icon -->
 
@@ -278,8 +278,8 @@
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
             >
               <li class="dropdown-header">
-                <h6>{{session["username"]}}</h6>
-                <span>Farm Owner</span>
+                <h6>{{ banana_user_profile['fullname'] }}</h6>
+                <span>{{ banana_user_profile['job'] }}</span>
               </li>
               <li>
                 <hr class="dropdown-divider" />
@@ -506,21 +506,21 @@
                   <div class="info-box card">
                     <i class="bi bi-geo-alt"></i>
                     <h3>Address</h3>
-                    <p>A108 Adam Street,<br>New York, NY 535022</p>
+                    <p>{{ banana_user_profile['address'] }}</p>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="info-box card">
                     <i class="bi bi-telephone"></i>
                     <h3>Call Us</h3>
-                    <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                    <p>{{ banana_user_profile['phone'] }}<br>{{ banana_user_profile['phone'] }}<br>{{ banana_user_profile['phone'] }}</p>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="info-box card">
                     <i class="bi bi-envelope"></i>
                     <h3>Email Us</h3>
-                    <p>info@example.com<br>contact@example.com</p>
+                    <p>{{ banana_user_profile['email'] }}<br>{{ banana_user_profile['email'] }}</p>
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -536,7 +536,7 @@
     
             <div class="col-xl-6">
               <div class="card p-4">
-                <form action="forms/contact.php" method="post" class="php-email-form">
+                <form action="/send_email" method="post">
                   <div class="row gy-4">
     
                     <div class="col-md-6">
@@ -556,10 +556,6 @@
                     </div>
     
                     <div class="col-md-12 text-center">
-                      <div class="loading">Loading</div>
-                      <div class="error-message"></div>
-                      <div class="sent-message">Your message has been sent. Thank you!</div>
-    
                       <button type="submit">Send Message</button>
                     </div>
     

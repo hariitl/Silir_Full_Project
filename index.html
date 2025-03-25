@@ -86,12 +86,12 @@
           </li>
           <!-- End Search Icon-->
 
-          <li class="nav-item dropdown">
+          <!--<li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
               <i class="bi bi-bell"></i>
-              <span class="badge bg-primary badge-number">4</span> </a
-            ><!-- End Notification Icon -->
-
+              <span class="badge bg-primary badge-number">4</span> </a> -->
+              <!-- End Notification Icon --> 
+<!--
             <ul
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications"
             >
@@ -161,17 +161,17 @@
               <li class="dropdown-footer">
                 <a href="#">Show all notifications</a>
               </li>
-            </ul>
+            </ul>-->
             <!-- End Notification Dropdown Items -->
           </li>
           <!-- End Notification Nav -->
-
+<!--
           <li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
               <i class="bi bi-chat-left-text"></i>
               <span class="badge bg-success badge-number">3</span> </a
-            ><!-- End Messages Icon -->
-
+            >--><!-- End Messages Icon -->
+<!--
             <ul
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages"
             >
@@ -253,9 +253,9 @@
               <li class="dropdown-footer">
                 <a href="#">Show all messages</a>
               </li>
-            </ul>
+            </ul>-->
             <!-- End Messages Dropdown Items -->
-          </li>
+          </li> 
           <!-- End Messages Nav -->
 
           <li class="nav-item dropdown pe-3">
@@ -265,12 +265,12 @@
               data-bs-toggle="dropdown"
             >
               <img
-                src="assets/img/profile-img.jpg"
+                src="{{ banana_user_profile['profile_image'] }}"
                 alt="Profile"
                 class="rounded-circle"
               />
               <span class="d-none d-md-block dropdown-toggle ps-2"
-                >{{session["username"]}}</span
+                >{{ banana_user_profile['fullname'] }}</span
               > </a
             ><!-- End Profile Iamge Icon -->
 
@@ -278,8 +278,8 @@
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
             >
               <li class="dropdown-header">
-                <h6>{{session["username"]}}</h6>
-                <span>Farm Owner</span>
+                <h6>{{ banana_user_profile['fullname'] }}</h6>
+                <span>{{ banana_user_profile['job'] }}</span>
               </li>
               <li>
                 <hr class="dropdown-divider" />
@@ -666,7 +666,7 @@
           <i class="bi bi-cloud"></i> <!-- Changed icon to CO2 related -->
         </div>
         <div class="ps-3">
-          <h6 id="co2-value1">-</h6>
+          <h6 id="co2-value1">22°C</h6>
         </div>
       </div>
 
@@ -703,7 +703,7 @@
 <i class="bi bi-moisture"></i>
 </div>
 <div class="ps-3">
-<h6 id="ammonia-value1">-</h6>
+<h6 id="ammonia-value1">22°C</h6>
 </div>
 </div>
 
@@ -816,7 +816,7 @@
     <div id="liveVideo" style="min-height: 200px; width: 100%; position: relative;">
       <div class="ratio ratio-16x9">
   <video controls>
-    <source src="./assets/Model/video.mp4" type="video/mp4">
+    <source src="./assets/img/bananavideo.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
@@ -904,85 +904,6 @@
 </div><!-- End Recent Activity -->
 
 
-
-
-          <!-- Website Traffic -->
-          <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
-            <div class="card-body pb-0">
-              <h5 class="card-title">Website Traffic <span>| Today</span></h5>
-
-              <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
-
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  echarts.init(document.querySelector("#trafficChart")).setOption({
-                    tooltip: {
-                      trigger: 'item'
-                    },
-                    legend: {
-                      top: '5%',
-                      left: 'center'
-                    },
-                    series: [{
-                      name: 'Access From',
-                      type: 'pie',
-                      radius: ['40%', '70%'],
-                      avoidLabelOverlap: false,
-                      label: {
-                        show: false,
-                        position: 'center'
-                      },
-                      emphasis: {
-                        label: {
-                          show: true,
-                          fontSize: '18',
-                          fontWeight: 'bold'
-                        }
-                      },
-                      labelLine: {
-                        show: false
-                      },
-                      data: [{
-                          value: 1048,
-                          name: 'Search Engine'
-                        },
-                        {
-                          value: 735,
-                          name: 'Direct'
-                        },
-                        {
-                          value: 580,
-                          name: 'Email'
-                        },
-                        {
-                          value: 484,
-                          name: 'Union Ads'
-                        },
-                        {
-                          value: 300,
-                          name: 'Video Ads'
-                        }
-                      ]
-                    }]
-                  });
-                });
-              </script>
-
-            </div>
-          </div><!-- End Website Traffic -->
 
          
 

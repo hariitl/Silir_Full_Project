@@ -86,12 +86,12 @@
           </li>
           <!-- End Search Icon-->
 
-          <li class="nav-item dropdown">
+          <!--<li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
               <i class="bi bi-bell"></i>
-              <span class="badge bg-primary badge-number">4</span> </a
-            ><!-- End Notification Icon -->
-
+              <span class="badge bg-primary badge-number">4</span> </a> -->
+              <!-- End Notification Icon --> 
+<!--
             <ul
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications"
             >
@@ -161,17 +161,17 @@
               <li class="dropdown-footer">
                 <a href="#">Show all notifications</a>
               </li>
-            </ul>
+            </ul>-->
             <!-- End Notification Dropdown Items -->
           </li>
           <!-- End Notification Nav -->
-
+<!--
           <li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
               <i class="bi bi-chat-left-text"></i>
               <span class="badge bg-success badge-number">3</span> </a
-            ><!-- End Messages Icon -->
-
+            >--><!-- End Messages Icon -->
+<!--
             <ul
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages"
             >
@@ -253,9 +253,9 @@
               <li class="dropdown-footer">
                 <a href="#">Show all messages</a>
               </li>
-            </ul>
+            </ul>-->
             <!-- End Messages Dropdown Items -->
-          </li>
+          </li> 
           <!-- End Messages Nav -->
 
           <li class="nav-item dropdown pe-3">
@@ -265,12 +265,12 @@
               data-bs-toggle="dropdown"
             >
               <img
-                src="assets/img/profile-img.jpg"
+                src="{{ admin_profile['profile_image'] }}"
                 alt="Profile"
                 class="rounded-circle"
               />
               <span class="d-none d-md-block dropdown-toggle ps-2"
-                >{{session["username"]}}</span
+                >{{ admin_profile['fullname'] }}</span
               > </a
             ><!-- End Profile Iamge Icon -->
 
@@ -278,8 +278,8 @@
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
             >
               <li class="dropdown-header">
-                <h6>{{session["username"]}}</h6>
-                <span>Admin Page</span>
+                <h6>{{ admin_profile['fullname'] }}</h6>
+                <span>{{ admin_profile['job'] }}</span>
               </li>
               <li>
                 <hr class="dropdown-divider" />
@@ -424,27 +424,27 @@
           <ul id="MyDevices-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li class="nav-item">
               <a class="nav-link" href="1001A.html">
-                <i class="bi bi-journal-text"></i><span>1001A</span>
+                <i class="bi bi-journal-text"></i><span>1001A - Poultry</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.html">
-                <i class="bi bi-journal-text"></i><span>1001C</span>
+                <i class="bi bi-journal-text"></i><span>1001C - Ripening</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="1001H.html">
-                <i class="bi bi-journal-text"></i><span>1001H</span>
+                <i class="bi bi-journal-text"></i><span>1001H - Mushroom</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="1001I.html">
-                <i class="bi bi-journal-text"></i><span>1001I</span>
+                <i class="bi bi-journal-text"></i><span>1001I - Dairy</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="1001J.html">
-                <i class="bi bi-journal-text"></i><span>1001J</span>
+                <i class="bi bi-journal-text"></i><span>1001J - Solar</span>
               </a>
             </li>
           </ul>
@@ -712,7 +712,7 @@
                 </div>
               </div><!-- End Reports -->
   
-              <!-- Recent Sales -->
+              <!-- Recent Sales 
               <div class="col-12">
                 <div class="card recent-sales overflow-auto">
   
@@ -784,9 +784,9 @@
                   </div>
   
                 </div>
-              </div><!-- End Recent Sales -->
+              </div>--><!-- End Recent Sales -->
   
-              <!-- Top Selling -->
+              <!-- Top Selling 
               <div class="col-12">
                 <div class="card top-selling overflow-auto">
   
@@ -858,7 +858,7 @@
                   </div>
   
                 </div>
-              </div><!-- End Top Selling -->
+              </div>--><!-- End Top Selling -->
   
             </div>
           </div><!-- End Left side columns -->
@@ -939,7 +939,7 @@
               </div>
             </div><!-- End Recent Activity -->
   
-            <!-- Budget Report -->
+            <!-- Budget Report 
             <div class="card">
               <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -1011,9 +1011,9 @@
                 </script>
   
               </div>
-            </div><!-- End Budget Report -->
+            </div>--><!-- End Budget Report -->
   
-            <!-- Website Traffic -->
+            <!-- Website Traffic 
             <div class="card">
               <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -1089,9 +1089,9 @@
                 </script>
   
               </div>
-            </div><!-- End Website Traffic -->
+            </div>--><!-- End Website Traffic -->
   
-            <!-- News & Updates Traffic -->
+            <!-- News & Updates Traffic 
             <div class="card">
               <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -1140,7 +1140,7 @@
                     <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
                   </div>
   
-                </div><!-- End sidebar recent posts-->
+                </div>--><!-- End sidebar recent posts-->
   
               </div>
             </div><!-- End News & Updates -->

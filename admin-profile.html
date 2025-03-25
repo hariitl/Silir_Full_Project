@@ -1,5 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+   <!-- Fade-out JavaScript -->
+   <script>
+    // Select all flash messages and set a timeout for fade-out
+    window.addEventListener("DOMContentLoaded", function () {
+      const flashMessages = document.querySelectorAll('.flash-message');
+      flashMessages.forEach(message => {
+        setTimeout(() => {
+          message.style.opacity = '0';  // Start fade out
+          setTimeout(() => message.remove(), 1000);  // Remove after fade-out duration
+        }, 1000);  // Display for 4 seconds
+      });
+    });
+  </script>
+  <style>
+        .alert--success {
+    background-color: #d4edda; /* Light green background */
+    color: #155724;           /* Dark green text */
+    padding: 10px;
+    border: 1px solid #c3e6cb; /* Green border */
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+
+        .alert--danger {
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24;           /* Dark red text */
+    padding: 10px;
+    border: 1px solid #f5c6cb; /* Red border */
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+    .flash-message {
+      transition: opacity 1s ease-in-out;
+}
+  </style>
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -86,12 +123,12 @@
           </li>
           <!-- End Search Icon-->
 
-          <li class="nav-item dropdown">
+          <!--<li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
               <i class="bi bi-bell"></i>
-              <span class="badge bg-primary badge-number">4</span> </a
-            ><!-- End Notification Icon -->
-
+              <span class="badge bg-primary badge-number">4</span> </a> -->
+              <!-- End Notification Icon --> 
+<!--
             <ul
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications"
             >
@@ -161,17 +198,17 @@
               <li class="dropdown-footer">
                 <a href="#">Show all notifications</a>
               </li>
-            </ul>
+            </ul>-->
             <!-- End Notification Dropdown Items -->
           </li>
           <!-- End Notification Nav -->
-
+<!--
           <li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
               <i class="bi bi-chat-left-text"></i>
               <span class="badge bg-success badge-number">3</span> </a
-            ><!-- End Messages Icon -->
-
+            >--><!-- End Messages Icon -->
+<!--
             <ul
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages"
             >
@@ -253,9 +290,9 @@
               <li class="dropdown-footer">
                 <a href="#">Show all messages</a>
               </li>
-            </ul>
+            </ul>-->
             <!-- End Messages Dropdown Items -->
-          </li>
+          </li> 
           <!-- End Messages Nav -->
 
           <li class="nav-item dropdown pe-3">
@@ -265,12 +302,12 @@
               data-bs-toggle="dropdown"
             >
               <img
-                src="assets/img/profile-img.jpg"
+                src="{{ admin_profile['profile_image'] }}"
                 alt="Profile"
                 class="rounded-circle"
               />
               <span class="d-none d-md-block dropdown-toggle ps-2"
-                >{{session["username"]}}</span
+                >{{ admin_profile['fullname'] }}</span
               > </a
             ><!-- End Profile Iamge Icon -->
 
@@ -278,8 +315,8 @@
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
             >
               <li class="dropdown-header">
-                <h6>{{session["username"]}}</h6>
-                <span>Admin Page</span>
+                <h6>{{ admin_profile['fullname'] }}</h6>
+                <span>{{ admin_profile['job'] }}</span>
               </li>
               <li>
                 <hr class="dropdown-divider" />
@@ -505,6 +542,13 @@
     <!-- End Sidebar -->
 
     <main id="main" class="main">
+      {% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages %}
+    {% for category, message in messages %}
+    <div class="alert--{{category}} flash-message">{{message}}</div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
 
       <div class="pagetitle">
         <h1>Profile</h1>
@@ -524,14 +568,14 @@
             <div class="card">
               <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
   
-                <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                <h2>Kevin Anderson</h2>
-                <h3>Web Designer</h3>
+                <img src="{{ admin_profile['profile_image'] }}" alt="Profile" class="rounded-circle">
+                <h2>{{ admin_profile['fullname'] }}</h2>
+                <h3>{{ admin_profile['job'] }}</h3>
                 <div class="social-links mt-2">
-                  <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                  <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                  <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                  <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                  <a href="{{ admin_profile['twitter_profile'] }}" class="twitter"><i class="bi bi-twitter"></i></a>
+                  <a href="{{ admin_profile['facebook_profile'] }}" class="facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="{{ admin_profile['instagram_profile'] }}" class="instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="{{ admin_profile['linkedin_profile'] }}" class="linkedin"><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
             </div>
@@ -553,9 +597,9 @@
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
                   </li>
   
-                  <li class="nav-item">
+                  <!--<li class="nav-item">
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
-                  </li>
+                  </li> -->
   
                   <li class="nav-item">
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
@@ -566,43 +610,43 @@
   
                   <div class="tab-pane fade show active profile-overview" id="profile-overview">
                     <h5 class="card-title">About</h5>
-                    <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+                    <p class="small fst-italic">{{ admin_profile['about'] }}</p>
   
                     <h5 class="card-title">Profile Details</h5>
   
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                      <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                      <div class="col-lg-9 col-md-8">{{ admin_profile['fullname'] }}</div>
                     </div>
   
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Company</div>
-                      <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
+                      <div class="col-lg-9 col-md-8">{{ admin_profile['company'] }}</div>
                     </div>
   
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Job</div>
-                      <div class="col-lg-9 col-md-8">Web Designer</div>
+                      <div class="col-lg-9 col-md-8">{{ admin_profile['job'] }}</div>
                     </div>
   
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Country</div>
-                      <div class="col-lg-9 col-md-8">USA</div>
+                      <div class="col-lg-9 col-md-8">{{ admin_profile['country'] }}</div>
                     </div>
   
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Address</div>
-                      <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
+                      <div class="col-lg-9 col-md-8">{{ admin_profile['address'] }}</div>
                     </div>
   
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Phone</div>
-                      <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                      <div class="col-lg-9 col-md-8">{{ admin_profile['phone'] }}</div>
                     </div>
   
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Email</div>
-                      <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                      <div class="col-lg-9 col-md-8">{{ admin_profile['email'] }}</div>
                     </div>
   
                   </div>
@@ -610,14 +654,20 @@
                   <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
   
                     <!-- Profile Edit Form -->
-                    <form>
+                    <form method="POST" action="{{url_for('adminprofile')}}" enctype="multipart/form-data">
                       <div class="row mb-3">
                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                         <div class="col-md-8 col-lg-9">
-                          <img src="assets/img/profile-img.jpg" alt="Profile">
+                          <img src="{{ admin_profile['profile_image'] }}" alt="Profile">
                           <div class="pt-2">
-                            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                            <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                            <!-- Upload and remove profile image buttons -->
+                            <input type="file" id="profileImage" name="profileImage" style="display: none;" accept="image/*">
+                            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image" onclick="document.getElementById('profileImage').click();">
+                              <i class="bi bi-upload"></i>
+                            </a>
+                            <a href="{{ url_for('remove_profile_image_a') }}" class="btn btn-danger btn-sm" title="Remove my profile image">
+                              <i class="bi bi-trash"></i>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -625,84 +675,84 @@
                       <div class="row mb-3">
                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                          <input name="fullName" type="text" class="form-control" id="fullName" value="{{ admin_profile['fullname'] }}">
                         </div>
                       </div>
   
                       <div class="row mb-3">
                         <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
                         <div class="col-md-8 col-lg-9">
-                          <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                          <textarea name="about" class="form-control" id="about" style="height: 100px">{{ admin_profile['about'] }}</textarea>
                         </div>
                       </div>
   
                       <div class="row mb-3">
                         <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
+                          <input name="company" type="text" class="form-control" id="company" value="{{ admin_profile['company'] }}">
                         </div>
                       </div>
   
                       <div class="row mb-3">
                         <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
+                          <input name="job" type="text" class="form-control" id="Job" value="{{ admin_profile['job'] }}">
                         </div>
                       </div>
   
                       <div class="row mb-3">
                         <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="country" type="text" class="form-control" id="Country" value="USA">
+                          <input name="country" type="text" class="form-control" id="Country" value="{{ admin_profile['country'] }}">
                         </div>
                       </div>
   
                       <div class="row mb-3">
                         <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
+                          <input name="address" type="text" class="form-control" id="Address" value="{{ admin_profile['address'] }}">
                         </div>
                       </div>
   
                       <div class="row mb-3">
                         <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
+                          <input name="phone" type="text" class="form-control" id="Phone" value="{{ admin_profile['phone'] }}">
                         </div>
                       </div>
   
                       <div class="row mb-3">
                         <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                          <input name="email" type="email" class="form-control" id="Email" value="{{ admin_profile['email'] }}">
                         </div>
                       </div>
   
                       <div class="row mb-3">
                         <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
+                          <input name="twitter" type="text" class="form-control" id="Twitter" value="{{ admin_profile['twitter_profile'] }}">
                         </div>
                       </div>
   
                       <div class="row mb-3">
                         <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
+                          <input name="facebook" type="text" class="form-control" id="Facebook" value="{{ admin_profile['facebook_profile'] }}">
                         </div>
                       </div>
   
                       <div class="row mb-3">
                         <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
+                          <input name="instagram" type="text" class="form-control" id="Instagram" value="{{ admin_profile['instagram_profile'] }}">
                         </div>
                       </div>
   
                       <div class="row mb-3">
                         <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
+                          <input name="linkedin" type="text" class="form-control" id="Linkedin" value="{{ admin_profile['linkedin_profile'] }}">
                         </div>
                       </div>
   
@@ -713,9 +763,9 @@
   
                   </div>
   
-                  <div class="tab-pane fade pt-3" id="profile-settings">
+                  <!--<div class="tab-pane fade pt-3" id="profile-settings">-->
   
-                    <!-- Settings Form -->
+                    <!-- Settings Form 
                     <form>
   
                       <div class="row mb-3">
@@ -751,13 +801,13 @@
                       <div class="text-center">
                         <button type="submit" class="btn btn-primary">Save Changes</button>
                       </div>
-                    </form><!-- End settings Form -->
+                    </form>--><!-- End settings Form 
   
-                  </div>
+                  </div> -->
   
                   <div class="tab-pane fade pt-3" id="profile-change-password">
                     <!-- Change Password Form -->
-                    <form>
+                    <form method="POST" action="{{url_for('change_password_a')}}">
   
                       <div class="row mb-3">
                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
